@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Final Destination</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type='text/javascript' src='./config.js'></script>
+    </head>
+    <body style="background-color: #a6e1e4; transition: all 2s linear 1s">
+        <div>
+            <form id="code-form" style="text-align: center;">
+                <div style="padding-top: 10vh; padding-bottom: 5vh;">
+                    <input type="number" id="code" name="code" max="9999999" style="font-size: 30px; text-align: center; font-family: 'Courier New', Courier, monospace;">
+                </div>
+                <div>
+                    <img src="./Images/Codelock.png" id="code-img">
+                </div>
+                <div id="cum"></div>
+                <div style="padding-top: 5vh;">
+                    <input type="submit" id="submit" value="Try your skills!" style="font-size: 25px; padding: 40px; font-family: 'Courier New', Courier, monospace;">
+                </div>
+            </form>
+        </div>
+    </body>
+
+    <script>
+        $("#code-form").submit(function(e) {
+            e.preventDefault();
+            
+            var code = document.getElementById("code").value;
+
+            var actualCode = config.CODE;
+
+            if (code.length != actualCode.length){
+                alert("The lenght of the code must be 7!");
+            }
+            else{
+                if (code == actualCode){
+                    document.getElementById("cum").innerHTML = config.ELEMENT;
+
+                    $("#code-img, #code, #submit").fadeOut(3000);
+                    setTimeout(() => { $("#title").fadeIn(3000); document.body.style.backgroundColor = "#f2c1d3"; }, 3000);
+                }
+                else{
+                    alert("Wrong code");
+                }
+            }
+        });
+    </script>
+</html>
